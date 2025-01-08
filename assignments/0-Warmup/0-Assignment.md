@@ -21,7 +21,7 @@ Please provide answers to these questions using markdown notation and place them
 
 1. Select with an `x` the platform you will be using for your course deliverables:
 
-    - [ ] drexel's tux cluster
+    - [x] drexel's tux cluster
     - [ ] WSL on Windows
     - [ ] Orbstack on MacOs
     - [ ] VMWare Fusion
@@ -30,12 +30,15 @@ Please provide answers to these questions using markdown notation and place them
 2. I have installed my virtual machine, tested it, feel comfortable using it, and validated that the required software is installed:
 
     - [ ] YES
-    - [ ] N/A - I plan to use tux
+    - [x] N/A - I plan to use tux
     - [ ] NO - Not Yet
 
 
 3. Please provide a link to the repository you are using for this class.
-
+https://github.com/matt-kalman/SysProg-Class
 4. Briefly describe what you want to get out of this class.
-
+I want to learn about the architecture of computers, like Unix and Windows architectures and how it relates to
+programming. I also want to brush up on my C knowledge and learn about the processes that C uses to run programs.
 5. Briefly describe any concerns you might be having with being successful in this class (if any).
+I don't like using Vim very much and I feel like it might slow me down when it comes to programming. I am currently
+trying to figure out how to remotely connect the Tux server to VSCode so I can more easily edit code.
