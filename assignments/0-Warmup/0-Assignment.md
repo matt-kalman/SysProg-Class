@@ -37,8 +37,15 @@ Please provide answers to these questions using markdown notation and place them
 3. Please provide a link to the repository you are using for this class.
 https://github.com/matt-kalman/SysProg-Class
 4. Briefly describe what you want to get out of this class.
+<<<<<<< HEAD
 I want to learn about the architecture of computers, like Unix and Windows architectures and how it relates to
 programming. I also want to brush up on my C knowledge and learn about the processes that C uses to run programs.
 5. Briefly describe any concerns you might be having with being successful in this class (if any).
 I don't like using Vim very much and I feel like it might slow me down when it comes to programming. I am currently
 trying to figure out how to remotely connect the Tux server to VSCode so I can more easily edit code.
+=======
+
+5. Briefly describe any concerns you might be having with being successful in this class (if any).
+
+
+>>>>>>> be43e89b670bcb8301e208d207db2d46ce36ca22
