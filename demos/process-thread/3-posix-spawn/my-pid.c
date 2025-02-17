@@ -11,5 +11,5 @@ int main() {
     printf("[c] my-pid: My thread id is: %ld\n", tid);
     printf("[c] my-pid: Note in a mult-threaded program pid != tid\n");
     
-    return 0;
+    return 42;
 }

@@ -7,7 +7,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -g
 
 # Source files
-SOURCES = fork-basic fork-exec fork-exec-pc my-pid sleeper
+SOURCES = signal-basic signal-custom signal-logic signal-do-not-disturb
 
 # Executable names
 EXECUTABLES = $(SOURCES:.c=)
