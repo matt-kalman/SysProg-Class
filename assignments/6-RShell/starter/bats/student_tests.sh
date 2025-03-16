@@ -158,3 +158,158 @@ EOF
     [ "$status" -eq 0 ]
     [[ "$output" == *"Hello     world!"* ]]
 }
+
+@test "Server starts and accepts client connections" {
+    ./dsh -s &
+    SERVER_PID=$!
+    
+    sleep 1
+    
+    run ./dsh -c <<EOF
+echo "Connection successful"
+exit
+EOF
+    
+    [ "$status" -eq 0 ]
+    [[ "$output" == *"Connection successful"* ]]
+}
+
+@test "Check cd without arguments, server" {
+    ./dsh -s &
+    SERVER_PID=$!
+    
+    sleep 1
+    
+    initial_dir=$(pwd)
+    run ./dsh -c <<EOF
+cd
+pwd
+exit
+EOF
+    [ "$status" -eq 0 ]
+    [[ "$output" == *"$initial_dir"* ]]
+}
+
+@test "Check cd to invalid directory should fail, server" {
+    ./dsh -s &
+    SERVER_PID=$!
+    
+    sleep 1
+    
+    run ./dsh -c <<EOF
+cd /invalid_dir
+pwd
+EOF
+    [ "$status" -eq 0 ]
+}
+
+@test "Check leading whitespace is handled correctly, server" {
+    ./dsh -s &
+    SERVER_PID=$!
+    
+    sleep 1
+    
+    run ./dsh -c <<EOF
+     ls -l
+exit
+EOF
+    [ "$status" -eq 0 ]
+    [[ "$output" == *"$(ls -l)"* ]]
+}
+
+@test "Check extra whitespace is handled correctly, server" {
+    ./dsh -s &
+    SERVER_PID=$!
+    
+    sleep 1
+    
+    run ./dsh -c <<EOF
+ls     -l
+exit
+EOF
+    [ "$status" -eq 0 ]
+    [[ "$output" == *"$(ls -l)"* ]]
+}
+
+@test "Check empty input warning, server" {
+    ./dsh -s &
+    SERVER_PID=$!
+    
+    sleep 1
+    
+    run ./dsh -c <<EOF
+exit
+EOF
+    [ "$status" -eq 0 ]
+    [[ "$output" == *"$CMD_WARN_NO_CMD"* ]]
+}
+
+@test "Check pipe runs with muptiple pipes, server" {
+    ./dsh -s &
+    SERVER_PID=$!
+    
+    sleep 1
+    
+    run ./dsh -c <<EOF
+ls | grep .c | wc -l
+exit
+EOF
+    [ "$status" -eq 0 ]
+    [[ "$output" == *"$(ls | grep .c | wc -l)"* ]]
+}
+
+@test "Check pipe runs with extra space in between, server" {
+    ./dsh -s &
+    SERVER_PID=$!
+    
+    sleep 1
+    
+    run ./dsh -c <<EOF
+ls     |     grep dshlib.c
+exit
+EOF
+    [ "$status" -eq 0 ]
+    [[ "$output" == *"dshlib.c"* ]]
+}
+
+@test "Check pipe runs with extra space in front, server" {
+    ./dsh -s &
+    SERVER_PID=$!
+    
+    sleep 1
+    
+    run ./dsh -c <<EOF
+     ls | grep dshlib.c
+exit
+EOF
+    [ "$status" -eq 0 ]
+    [[ "$output" == *"dshlib.c"* ]]
+}
+
+@test "Check echo prints correctly with pipe, server" {
+    ./dsh -s &
+    SERVER_PID=$!
+    
+    sleep 1
+    
+    run ./dsh -c <<EOF
+echo "Hello world!" | grep "Hello world!"
+exit
+EOF
+    [ "$status" -eq 0 ]
+    [[ "$output" == *"Hello world!"* ]]
+}
+
+@test "Check echo prints correctly with extra spaces with pipe, server" {
+    ./dsh -s &
+    SERVER_PID=$!
+    
+    sleep 1
+    
+    run ./dsh -c <<EOF
+echo "Hello     world!" | grep "Hello     world!"
+exit
+EOF
+    [ "$status" -eq 0 ]
+    [[ "$output" == *"Hello     world!"* ]]
+}
